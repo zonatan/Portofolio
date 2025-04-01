@@ -180,11 +180,11 @@ export default function Home() {
           <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8">
             Certificates
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
+          <div className="flex flex-wrap justify-center gap-6 px-6">
             {[1, 2, 3].map((cert) => (
               <div
                 key={cert}
-                className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-all"
+                className="w-full sm:max-w-[calc(50%-12px)] lg:max-w-[calc(33.333%-16px)] bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-all"
               >
                 <div className="relative aspect-[5.5/3] w-full">
                   <Image
