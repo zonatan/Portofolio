@@ -43,6 +43,17 @@ export default function Home() {
         <div className="container mx-auto h-full relative z-20 flex items-center px-4 sm:px-6">
           <div className="w-full">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <div className="block sm:hidden -mb-12 relative -top-14">
+            <div className="relative inline-block rounded-full p-1 bg-gradient-to-r from-[#0575F4] to-[#00F260]">
+                <Image
+                  src="/assets/profile.jpg"
+                  alt="Profile Picture"
+                  width={120}
+                  height={120}
+                  className="rounded-full shadow-lg object-cover  aspect-square"
+                />
+                </div>
+              </div>
               {/* Greeting */}
               <p className="text-gray-400 text-sm sm:text-base tracking-widest uppercase mb-2 sm:mb-3">
                 Hello!
