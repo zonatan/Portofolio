@@ -790,7 +790,7 @@ const projects: ProjectType[] = [
     demoLink: "https://zonatan.github.io/ClubMotor/",
   },
   {
-    id: 2,
+    id: 3,
     title: "Company Portfolio",
     description:
       "Professional business portfolio website with modern design aesthetics. Features services showcase, team profiles, client testimonials, and contact forms. Built with performance and SEO best practices in mind.",
