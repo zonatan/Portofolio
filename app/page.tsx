@@ -280,6 +280,8 @@ export default function Home() {
             </div>
           </div>
 
+
+
           {/* Project 2 */}
           <div className="flex flex-col lg:flex-row-reverse gap-8 items-center mb-16 p-6 bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
             <div className="lg:w-1/2 w-full">
@@ -321,6 +323,60 @@ export default function Home() {
                 </a>
                 <a
                   href="https://zonatan.github.io/ClubMotor/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  <FaExternalLinkAlt className="text-xl" />
+                  <span>Live Demo</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+           {/* Project 1 */}
+          <div className="flex flex-col lg:flex-row gap-8 items-center mb-16 p-6 bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="lg:w-1/2 w-full">
+              <div className="relative aspect-[7/3] rounded-lg overflow-hidden">
+                <Image
+                  src="/assets/projects/project3.png"
+                  alt="Company Portofolio"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+            <div className="lg:w-1/2 w-full space-y-4">
+              <h3 className="text-2xl font-bold text-blue-400">
+               Company Portofolio
+              </h3>
+              <p className="text-gray-300">
+               A sleek and modern static web design built to showcase your business identity with style and clarity. This website reflects a professional brand image, ideal for startups, agencies, or creative firms that want to make a strong first impression online.
+              </p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                <span className="px-3 py-1 bg-gray-700 rounded-full text-sm">
+                  HTML
+                </span>
+                <span className="px-3 py-1 bg-gray-700 rounded-full text-sm">
+                  CSS
+                </span>
+                <span className="px-3 py-1 bg-gray-700 rounded-full text-sm">
+                  Tailwindcss
+                </span>
+              </div>
+              <div className="flex gap-4 mt-6">
+                <a
+                  href="https://github.com/zonatan/company-portfolio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  <FaGithub className="text-xl" />
+                  <span>View Code</span>
+                </a>
+                <a
+                  href="https://zonatan.github.io/company-portfolio/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
