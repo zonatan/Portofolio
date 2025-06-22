@@ -6,6 +6,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class', // Tambahkan ini untuk mengaktifkan dark mode berdasarkan kelas
   theme: {
     extend: {
       colors: {
@@ -16,4 +17,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;
