@@ -98,7 +98,7 @@ export default function Home() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 transition-colors duration-500">
         {/* Floating Navigation */}
         <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] sm:w-auto">
-          <div className="flex items-center gap-1 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 flex-wrap justify-center">
+          <div className="flex items-center gap-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 flex-wrap justify-center">
             <NavLink href="#home" active={activeSection === 'home'}>
               Home
             </NavLink>
