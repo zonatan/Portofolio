@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Lanyard from "./components/Lanyard/Lanyard";
@@ -26,7 +26,12 @@ import {
   SiTypescript,
 } from "react-icons/si";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 export default function Home() {
@@ -35,25 +40,36 @@ export default function Home() {
 
   // Inisialisasi darkMode dari localStorage di sisi klien, default ke true
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedMode = localStorage.getItem('darkMode');
-      const isDark = savedMode !== null ? savedMode === 'true' : true; // Default ke true jika null
+    if (typeof window !== "undefined") {
+      const savedMode = localStorage.getItem("darkMode");
+      const isDark = savedMode !== null ? savedMode === "true" : true; // Default ke true jika null
       setDarkMode(isDark);
-      console.log('Initial dark mode from localStorage:', savedMode, 'isDark:', isDark);
+      console.log(
+        "Initial dark mode from localStorage:",
+        savedMode,
+        "isDark:",
+        isDark
+      );
     }
   }, []);
 
   // Efek untuk memperbarui kelas dark dan localStorage
   useEffect(() => {
     if (darkMode === null) return;
-    console.log('Updating dark mode:', darkMode);
-    localStorage.setItem('darkMode', darkMode.toString());
+    console.log("Updating dark mode:", darkMode);
+    localStorage.setItem("darkMode", darkMode.toString());
     if (darkMode) {
-      document.documentElement.classList.add('dark');
-      console.log('Added dark class:', document.documentElement.classList.contains('dark'));
+      document.documentElement.classList.add("dark");
+      console.log(
+        "Added dark class:",
+        document.documentElement.classList.contains("dark")
+      );
     } else {
-      document.documentElement.classList.remove('dark');
-      console.log('Removed dark class:', !document.documentElement.classList.contains('dark'));
+      document.documentElement.classList.remove("dark");
+      console.log(
+        "Removed dark class:",
+        !document.documentElement.classList.contains("dark")
+      );
     }
   }, [darkMode]);
 
@@ -68,30 +84,37 @@ export default function Home() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   // Active section tracking
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState("home");
   const [homeRef, homeInView] = useInView({ threshold: 0.5 });
   const [skillsRef, skillsInView] = useInView({ threshold: 0.3 });
   // Menurunkan threshold untuk projects di mobile
-  const [projectsRef, projectsInView] = useInView({ 
-    threshold: typeof window !== 'undefined' && window.innerWidth < 640 ? 0.1 : 0.3 
+  const [projectsRef, projectsInView] = useInView({
+    threshold:
+      typeof window !== "undefined" && window.innerWidth < 640 ? 0.1 : 0.3,
   });
   const [certificatesRef, certificatesInView] = useInView({ threshold: 0.3 });
   const [contactRef, contactInView] = useInView({ threshold: 0.5 });
 
   useEffect(() => {
-    console.log('Section in view:', {
+    console.log("Section in view:", {
       home: homeInView,
       skills: skillsInView,
       projects: projectsInView,
       certificates: certificatesInView,
       contact: contactInView,
     });
-    if (homeInView) setActiveSection('home');
-    else if (skillsInView) setActiveSection('skills');
-    else if (projectsInView) setActiveSection('projects');
-    else if (certificatesInView) setActiveSection('certificates');
-    else if (contactInView) setActiveSection('contact');
-  }, [homeInView, skillsInView, projectsInView, certificatesInView, contactInView]);
+    if (homeInView) setActiveSection("home");
+    else if (skillsInView) setActiveSection("skills");
+    else if (projectsInView) setActiveSection("projects");
+    else if (certificatesInView) setActiveSection("certificates");
+    else if (contactInView) setActiveSection("contact");
+  }, [
+    homeInView,
+    skillsInView,
+    projectsInView,
+    certificatesInView,
+    contactInView,
+  ]);
 
   return (
     <div className="min-h-screen transition-colors duration-300">
@@ -99,24 +122,27 @@ export default function Home() {
         {/* Floating Navigation */}
         <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] sm:w-auto">
           <div className="flex items-center gap-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 flex-wrap justify-center">
-            <NavLink href="#home" active={activeSection === 'home'}>
+            <NavLink href="#home" active={activeSection === "home"}>
               Home
             </NavLink>
-            <NavLink href="#skills" active={activeSection === 'skills'}>
+            <NavLink href="#skills" active={activeSection === "skills"}>
               Skills
             </NavLink>
-            <NavLink href="#projects" active={activeSection === 'projects'}>
+            <NavLink href="#projects" active={activeSection === "projects"}>
               Projects
             </NavLink>
-            <NavLink href="#certificates" active={activeSection === 'certificates'}>
+            <NavLink
+              href="#certificates"
+              active={activeSection === "certificates"}
+            >
               Certificates
             </NavLink>
-            <NavLink href="#contact" active={activeSection === 'contact'}>
+            <NavLink href="#contact" active={activeSection === "contact"}>
               Contact
             </NavLink>
             <button
               onClick={() => {
-                console.log('Toggling dark mode, current:', darkMode);
+                console.log("Toggling dark mode, current:", darkMode);
                 setDarkMode(!darkMode);
               }}
               className="ml-2 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 transition-colors duration-300"
@@ -150,7 +176,11 @@ export default function Home() {
         </nav>
 
         {/* Hero Section with Lanyard */}
-        <section id="home" ref={homeRef} className="relative h-screen overflow-hidden">
+        <section
+          id="home"
+          ref={homeRef}
+          className="relative h-screen overflow-hidden"
+        >
           <div ref={targetRef} className="absolute inset-0">
             <motion.div
               style={{ y, opacity }}
@@ -172,7 +202,8 @@ export default function Home() {
                   Zonatan Sihombing
                 </h1>
                 <p className="text-lg text-gray-600 dark:text-gray-200 mt-4 leading-relaxed">
-                  I craft exceptional digital experiences with clean, efficient code and intuitive interfaces that users love.
+                  I craft exceptional digital experiences with clean, efficient
+                  code and intuitive interfaces that users love.
                 </p>
               </motion.div>
 
@@ -232,10 +263,7 @@ export default function Home() {
             {/* Lanyard Component - Right Side */}
             <div className="hidden lg:flex lg:w-1/2 justify-center items-center h-full">
               <div className="relative w-full h-[400px]">
-                <Lanyard
-                  position={[0, 0, 15]}
-                  gravity={[0, -40, 0]}
-                />
+                <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
               </div>
             </div>
           </div>
@@ -245,7 +273,11 @@ export default function Home() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" ref={skillsRef} className="py-20 bg-white dark:bg-gray-950">
+        <section
+          id="skills"
+          ref={skillsRef}
+          className="py-20 bg-white dark:bg-gray-950"
+        >
           <div className="container mx-auto px-6">
             <SectionHeader
               title="My Expertise"
@@ -284,7 +316,11 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" ref={projectsRef} className="py-20 bg-gray-50 dark:bg-gray-900">
+        <section
+          id="projects"
+          ref={projectsRef}
+          className="py-20 bg-gray-50 dark:bg-gray-900"
+        >
           <div className="container mx-auto px-6">
             <SectionHeader
               title="Featured Projects"
@@ -300,7 +336,11 @@ export default function Home() {
         </section>
 
         {/* Certificates Section */}
-        <section id="certificates" ref={certificatesRef} className="py-20 bg-white dark:bg-gray-950">
+        <section
+          id="certificates"
+          ref={certificatesRef}
+          className="py-20 bg-white dark:bg-gray-950"
+        >
           <div className="container mx-auto px-6">
             <SectionHeader
               title="Certifications"
@@ -339,7 +379,8 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium"
                     >
-                      View credential <FaExternalLinkAlt className="ml-1 text-xs" />
+                      View credential{" "}
+                      <FaExternalLinkAlt className="ml-1 text-xs" />
                     </a>
                   </div>
                 </motion.div>
@@ -349,15 +390,20 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" ref={contactRef} className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+        <section
+          id="contact"
+          ref={contactRef}
+          className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800"
+        >
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-200">
                 Let's Build Something Amazing Together
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-                Whether you have a project in mind or just want to chat about technology,
-                I'd love to hear from you. Get in touch and let's create something exceptional.
+                Whether you have a project in mind or just want to chat about
+                technology, I'd love to hear from you. Get in touch and let's
+                create something exceptional.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
@@ -411,7 +457,8 @@ export default function Home() {
               />
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              © {new Date().getFullYear()} Zonatan Sihombing. All rights reserved.
+              © {new Date().getFullYear()} Zonatan Sihombing. All rights
+              reserved.
             </p>
           </div>
         </footer>
@@ -421,14 +468,22 @@ export default function Home() {
 }
 
 // Components
-function NavLink({ href, active, children }: { href: string; active: boolean; children: React.ReactNode }) {
+function NavLink({
+  href,
+  active,
+  children,
+}: {
+  href: string;
+  active: boolean;
+  children: React.ReactNode;
+}) {
   return (
     <a
       href={href}
       className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
         active
-          ? 'bg-blue-600 text-white dark:bg-blue-500 dark:text-white'
-          : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100'
+          ? "bg-blue-600 text-white dark:bg-blue-500 dark:text-white"
+          : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
       }`}
     >
       {children}
@@ -453,7 +508,9 @@ function SocialIcon({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`text-gray-500 dark:text-gray-400 text-xl transition-colors ${className || ''}`}
+      className={`text-gray-500 dark:text-gray-400 text-xl transition-colors ${
+        className || ""
+      }`}
       aria-label={label}
     >
       {icon}
@@ -461,7 +518,13 @@ function SocialIcon({
   );
 }
 
-function SectionHeader({ title, subtitle }: { title: string; subtitle: string }) {
+function SectionHeader({
+  title,
+  subtitle,
+}: {
+  title: string;
+  subtitle: string;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -480,14 +543,22 @@ function SectionHeader({ title, subtitle }: { title: string; subtitle: string })
   );
 }
 
-function ProjectCard({ project, index }: { project: ProjectType; index: number }) {
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: ProjectType;
+  index: number;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-200 dark:border-gray-700`}
+      className={`flex flex-col ${
+        index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+      } gap-8 items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-200 dark:border-gray-700`}
     >
       <div className="lg:w-1/2 w-full relative group overflow-hidden rounded-lg">
         <div className="relative aspect-video">
@@ -547,11 +618,36 @@ function ProjectCard({ project, index }: { project: ProjectType; index: number }
 
 function TechBubbles() {
   const techs = [
-    { icon: <FaReact className="text-blue-500" />, name: "React", size: "w-16 h-16", delay: 0 },
-    { icon: <SiNextdotjs className="text-black dark:text-white" />, name: "Next.js", size: "w-14 h-14", delay: 0.2 },
-    { icon: <SiTypescript className="text-blue-600" />, name: "TypeScript", size: "w-12 h-12", delay: 0.4 },
-    { icon: <FaNodeJs className="text-green-500" />, name: "Node.js", size: "w-16 h-16", delay: 0.6 },
-    { icon: <SiTailwindcss className="text-cyan-500" />, name: "Tailwind", size: "w-14 h-14", delay: 0.8 },
+    {
+      icon: <FaReact className="text-blue-500" />,
+      name: "React",
+      size: "w-16 h-16",
+      delay: 0,
+    },
+    {
+      icon: <SiNextdotjs className="text-black dark:text-white" />,
+      name: "Next.js",
+      size: "w-16 h-16",
+      delay: 0.2,
+    },
+    {
+      icon: <SiTypescript className="text-blue-600" />,
+      name: "TypeScript",
+      size: "w-16 h-16",
+      delay: 0.4,
+    },
+    {
+      icon: <FaNodeJs className="text-green-500" />,
+      name: "Node.js",
+      size: "w-16 h-16",
+      delay: 0.6,
+    },
+    {
+      icon: <SiTailwindcss className="text-cyan-500" />,
+      name: "Tailwind",
+      size: "w-16 h-16",
+      delay: 0.8,
+    },
   ];
 
   return (
@@ -571,8 +667,8 @@ function TechBubbles() {
           }}
           className={`absolute ${tech.size} flex items-center justify-center rounded-full bg-white/90 dark:bg-gray-800/90 shadow-lg border border-gray-200 dark:border-gray-700`}
           style={{
-            left: `${50 + index * 9}%`,
-            top: `${15 + index * 8}%`,
+            left: `${28 + index * 8}%`,
+            top: `${80 + index * 0}%`,
           }}
           aria-label={tech.name}
         >
@@ -585,19 +681,84 @@ function TechBubbles() {
 
 // Data
 const skills = [
-  { name: "HTML", icon: <FaHtml5 className="text-orange-500" />, level: 95, levelColor: "bg-orange-500" },
-  { name: "CSS", icon: <FaCss3Alt className="text-blue-500" />, level: 90, levelColor: "bg-blue-500" },
-  { name: "JavaScript", icon: <FaJs className="text-yellow-500" />, level: 88, levelColor: "bg-yellow-500" },
-  { name: "TypeScript", icon: <SiTypescript className="text-blue-600" />, level: 80, levelColor: "bg-blue-600" },
-  { name: "React", icon: <FaReact className="text-blue-400" />, level: 85, levelColor: "bg-blue-400" },
-  { name: "Next.js", icon: <SiNextdotjs className="text-black dark:text-white" />, level: 75, levelColor: "bg-gray-800 dark:bg-gray-300" },
-  { name: "Node.js", icon: <FaNodeJs className="text-green-500" />, level: 78, levelColor: "bg-green-500" },
-  { name: "Python", icon: <FaPython className="text-blue-600" />, level: 70, levelColor: "bg-blue-600" },
-  { name: "MongoDB", icon: <SiMongodb className="text-green-400" />, level: 75, levelColor: "bg-green-400" },
-  { name: "PostgreSQL", icon: <SiPostgresql className="text-blue-500" />, level: 72, levelColor: "bg-blue-500" },
-  { name: "Tailwind", icon: <SiTailwindcss className="text-cyan-400" />, level: 85, levelColor: "bg-cyan-400" },
-  { name: "Laravel", icon: <SiLaravel className="text-red-600" />, level: 65, levelColor: "bg-red-600" },
-  { name: "MySQL", icon: <FaDatabase className="text-blue-600" />, level: 70, levelColor: "bg-blue-600" },
+  {
+    name: "HTML",
+    icon: <FaHtml5 className="text-orange-500" />,
+    level: 95,
+    levelColor: "bg-orange-500",
+  },
+  {
+    name: "CSS",
+    icon: <FaCss3Alt className="text-blue-500" />,
+    level: 90,
+    levelColor: "bg-blue-500",
+  },
+  {
+    name: "JavaScript",
+    icon: <FaJs className="text-yellow-500" />,
+    level: 88,
+    levelColor: "bg-yellow-500",
+  },
+  {
+    name: "TypeScript",
+    icon: <SiTypescript className="text-blue-600" />,
+    level: 80,
+    levelColor: "bg-blue-600",
+  },
+  {
+    name: "React",
+    icon: <FaReact className="text-blue-400" />,
+    level: 85,
+    levelColor: "bg-blue-400",
+  },
+  {
+    name: "Next.js",
+    icon: <SiNextdotjs className="text-black dark:text-white" />,
+    level: 75,
+    levelColor: "bg-gray-800 dark:bg-gray-300",
+  },
+  {
+    name: "Node.js",
+    icon: <FaNodeJs className="text-green-500" />,
+    level: 78,
+    levelColor: "bg-green-500",
+  },
+  {
+    name: "Python",
+    icon: <FaPython className="text-blue-600" />,
+    level: 70,
+    levelColor: "bg-blue-600",
+  },
+  {
+    name: "MongoDB",
+    icon: <SiMongodb className="text-green-400" />,
+    level: 75,
+    levelColor: "bg-green-400",
+  },
+  {
+    name: "PostgreSQL",
+    icon: <SiPostgresql className="text-blue-500" />,
+    level: 72,
+    levelColor: "bg-blue-500",
+  },
+  {
+    name: "Tailwind",
+    icon: <SiTailwindcss className="text-cyan-400" />,
+    level: 85,
+    levelColor: "bg-cyan-400",
+  },
+  {
+    name: "Laravel",
+    icon: <SiLaravel className="text-red-600" />,
+    level: 65,
+    levelColor: "bg-red-600",
+  },
+  {
+    name: "MySQL",
+    icon: <FaDatabase className="text-blue-600" />,
+    level: 70,
+    levelColor: "bg-blue-600",
+  },
 ];
 
 type ProjectType = {
@@ -613,7 +774,8 @@ const projects: ProjectType[] = [
   {
     id: 1,
     title: "Library Management System",
-    description: "Comprehensive library management solution with online member registration, book inventory, and lending system. Features include real-time availability checks, automated reminders, and detailed reporting.",
+    description:
+      "Comprehensive library management solution with online member registration, book inventory, and lending system. Features include real-time availability checks, automated reminders, and detailed reporting.",
     technologies: ["PHP", "JavaScript", "Bootstrap", "MySQL"],
     githubLink: "https://github.com/zonatan/Sistem-Perpustakaan",
     demoLink: "https://github.com/zonatan/Sistem-Perpustakaan",
@@ -621,7 +783,8 @@ const projects: ProjectType[] = [
   {
     id: 2,
     title: "Motorbike Club Website",
-    description: "Modern static website for a motorcycle enthusiast club featuring responsive design, smooth animations, and clean UI. Showcases events, member galleries, and club information with an engaging user experience.",
+    description:
+      "Modern static website for a motorcycle enthusiast club featuring responsive design, smooth animations, and clean UI. Showcases events, member galleries, and club information with an engaging user experience.",
     technologies: ["HTML", "CSS", "JavaScript"],
     githubLink: "https://github.com/zonatan/ClubMotor",
     demoLink: "https://zonatan.github.io/ClubMotor/",
@@ -629,7 +792,8 @@ const projects: ProjectType[] = [
   {
     id: 2,
     title: "Company Portfolio",
-    description: "Professional business portfolio website with modern design aesthetics. Features services showcase, team profiles, client testimonials, and contact forms. Built with performance and SEO best practices in mind.",
+    description:
+      "Professional business portfolio website with modern design aesthetics. Features services showcase, team profiles, client testimonials, and contact forms. Built with performance and SEO best practices in mind.",
     technologies: ["HTML", "CSS", "Tailwind CSS", "JavaScript"],
     githubLink: "https://github.com/zonatan/company-portfolio",
     demoLink: "https://zonatan.github.io/company-portfolio/",
