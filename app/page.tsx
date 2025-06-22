@@ -639,21 +639,21 @@ const projects: ProjectType[] = [
 const certificates = [
   {
     id: "1",
-    title: "Full Stack Web Development",
+    title: "Basic Data",
     issuer: "Coding Bootcamp",
     date: "2023",
     link: "#",
   },
   {
     id: "2",
-    title: "Advanced JavaScript Concepts",
+    title: "API Introduction",
     issuer: "Online Course Platform",
     date: "2022",
     link: "#",
   },
   {
     id: "3",
-    title: "Responsive Web Design",
+    title: "Website Development Fundamental",
     issuer: "Web Development Institute",
     date: "2021",
     link: "#",
