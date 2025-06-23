@@ -1,3 +1,47 @@
+# Zonatan Portfolio - Modern Developer Portfolio 🚀
+
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://zonatan.my.id/)
+[![Built with Next.js](https://img.shields.io/badge/built%20with-Next.js-black)](https://nextjs.org/)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
+Welcome to my professional portfolio website! This is a modern, performant portfolio built with Next.js to showcase my skills, projects, and professional journey.
+
+![Portfolio Screenshot](https://zonatan.my.id/screenshot.jpg)  
+*(Replace with actual screenshot URL or add screenshot to your project)*
+
+## ✨ Features
+
+- ⚡ Blazing fast performance with Next.js static generation
+- � Modern UI with sleek animations and transitions
+- 📱 Fully responsive design for all devices
+- 🌐 Optimized for SEO and social sharing
+- 📬 Functional contact form with email integration
+- 🛠️ Showcase of my best projects with case studies
+
+## 🚀 Live Demo
+
+Check out the live version at: [https://zonatan.my.id/](https://zonatan.my.id/)
+
+## 🛠️ Technologies Used
+
+- Next.js 14 (App Router)
+- React 18
+- TypeScript
+- Tailwind CSS
+- Framer Motion (for animations)
+- React Icons
+- Nodemailer (for contact form)
+- Vercel (hosting)
+
+## 🏗️ Development Setup
+
+### Prerequisites
+
+- Node.js 18+
+- npm/yarn/pnpm
+
+###
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
