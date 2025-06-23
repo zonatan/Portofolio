@@ -1,8 +1,15 @@
-# <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="40" height="40"/> Zonatan Portfolio - Next.js Developer Portfolio
+<div align="center">
+  <img src="https://zonatan.my.id/favicon.ico" width="24" height="24" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="40" height="40" />
+  
+  <h1>Zonatan Portfolio – Next.js Developer Portfolio</h1>
+</div>
 
 <div align="center">
-  <img src="https://zonatan.my.id/screenshot.jpg" alt="Portfolio Preview" width="800"/>
-  
+  <img src="https://zonatan.my.id/screenshot.png" alt="Portfolio Preview" width="800"/>
+
+  <br />
+
   [![Website](https://img.shields.io/website?url=https%3A%2F%2Fzonatan.my.id&style=for-the-badge)](https://zonatan.my.id)
   [![GitHub license](https://img.shields.io/github/license/zonatan/portfolio?style=for-the-badge)](LICENSE)
   [![Next.js](https://img.shields.io/badge/Next.js-14.2.3-000000?style=for-the-badge&logo=nextdotjs)](https://nextjs.org)
@@ -28,8 +35,8 @@ A cutting-edge developer portfolio showcasing my skills, projects, and professio
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg" width="80" title="Next.js"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" width="80" title="React"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="80" title="TypeScript"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" width="80" title="Tailwind CSS"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framer/framer-original.svg" width="80" title="Framer Motion"/>
+  <img src="https://skillicons.dev/icons?i=tailwind" width="80" title="Tailwind CSS"/>
+  <img src="https://cdn.worldvectorlogo.com/logos/framer-motion.svg" width="80" title="Framer Motion"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" width="80" title="Vercel"/>
 </div>
 
