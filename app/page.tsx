@@ -667,8 +667,8 @@ function TechBubbles() {
           }}
           className={`absolute ${tech.size} flex items-center justify-center rounded-full bg-white/90 dark:bg-gray-800/90 shadow-lg border border-gray-200 dark:border-gray-700`}
           style={{
-            left: `${28 + index * 8}%`,
-            top: `${80 + index * 0}%`,
+            left: `${26 + index * 8}%`,
+            top: `${80 + index * -0.1}%`,
           }}
           aria-label={tech.name}
         >
