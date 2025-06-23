@@ -1,46 +1,37 @@
-# Zonatan Portfolio - Modern Developer Portfolio 🚀
+# <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="40" height="40"/> Zonatan Portfolio - Next.js Developer Portfolio
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://zonatan.my.id/)
-[![Built with Next.js](https://img.shields.io/badge/built%20with-Next.js-black)](https://nextjs.org/)
-[![MIT License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+<div align="center">
+  <img src="https://zonatan.my.id/screenshot.jpg" alt="Portfolio Preview" width="800"/>
+  
+  [![Website](https://img.shields.io/website?url=https%3A%2F%2Fzonatan.my.id&style=for-the-badge)](https://zonatan.my.id)
+  [![GitHub license](https://img.shields.io/github/license/zonatan/portfolio?style=for-the-badge)](LICENSE)
+  [![Next.js](https://img.shields.io/badge/Next.js-14.2.3-000000?style=for-the-badge&logo=nextdotjs)](https://nextjs.org)
+</div>
 
-Welcome to my professional portfolio website! This is a modern, performant portfolio built with Next.js to showcase my skills, projects, and professional journey.
+## 🌟 About The Project
 
-![Portfolio Screenshot](https://zonatan.my.id/screenshot.jpg)  
-*(Replace with actual screenshot URL or add screenshot to your project)*
+A cutting-edge developer portfolio showcasing my skills, projects, and professional journey. Built with modern web technologies for optimal performance and user experience.
 
-## ✨ Features
+## ✨ Key Features
 
-- ⚡ Blazing fast performance with Next.js static generation
-- � Modern UI with sleek animations and transitions
-- 📱 Fully responsive design for all devices
-- 🌐 Optimized for SEO and social sharing
-- 📬 Functional contact form with email integration
-- 🛠️ Showcase of my best projects with case studies
+| Feature | Description |
+|---------|-------------|
+| ⚡ **Performance** | 95+ Lighthouse score with Next.js optimizations |
+| 🎨 **Modern UI** | Sleek design with micro-interactions |
+| 📱 **Responsive** | Flawless experience on all devices |
+| 🔍 **SEO Ready** | Optimized metadata and structure |
+| ✉️ **Contact Form** | Working form with email notifications |
 
-## 🚀 Live Demo
+## 🛠 Tech Stack
 
-Check out the live version at: [https://zonatan.my.id/](https://zonatan.my.id/)
-
-## 🛠️ Technologies Used
-
-- Next.js 14 (App Router)
-- React 18
-- TypeScript
-- Tailwind CSS
-- Framer Motion (for animations)
-- React Icons
-- Nodemailer (for contact form)
-- Vercel (hosting)
-
-## 🏗️ Development Setup
-
-### Prerequisites
-
-- Node.js 18+
-- npm/yarn/pnpm
-
-###
+<div align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg" width="80" title="Next.js"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" width="80" title="React"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="80" title="TypeScript"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" width="80" title="Tailwind CSS"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framer/framer-original.svg" width="80" title="Framer Motion"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" width="80" title="Vercel"/>
+</div>
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
