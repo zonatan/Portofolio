@@ -1,18 +1,37 @@
 <div align="center">
-  <img src="https://zonatan.my.id/favicon.ico" width="24" height="24" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="40" height="40" />
-  
-  <h1>Zonatan Portfolio – Next.js Developer Portfolio</h1>
-</div>
+  <!-- Logo and Tech Stack -->
+  <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px;">
+    <img src="app/favicon.ico" width="40" height="40" alt="Logo" style="border-radius: 8px;"/>
+    <div style="height: 40px; border-left: 2px solid #ddd; margin: 0 10px;"></div>
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="40" height="40" alt="Next.js"/>
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="40" height="40" alt="React"/>
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="40" height="40" alt="TypeScript"/>
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" width="40" height="40" alt="Tailwind CSS"/>
+  </div>
 
-<div align="center">
-  <img src="https://zonatan.my.id/screenshot.png" alt="Portfolio Preview" width="800"/>
+  <!-- Title -->
+  <h1 style="margin: 0; font-size: 2.5rem; background: linear-gradient(90deg, #7928CA, #FF0080); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+    Zonatan Portfolio
+  </h1>
+  <p style="margin-top: 5px; color: #666; font-size: 1.2rem;">Modern Developer Portfolio Built with Next.js</p>
 
-  <br />
+  <!-- Screenshot -->
+  <div style="margin: 30px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+    <img src="app/screenshot.png" alt="Portfolio Preview" width="800" style="display: block; max-width: 100%;"/>
+  </div>
 
-  [![Website](https://img.shields.io/website?url=https%3A%2F%2Fzonatan.my.id&style=for-the-badge)](https://zonatan.my.id)
-  [![GitHub license](https://img.shields.io/github/license/zonatan/portfolio?style=for-the-badge)](LICENSE)
-  [![Next.js](https://img.shields.io/badge/Next.js-14.2.3-000000?style=for-the-badge&logo=nextdotjs)](https://nextjs.org)
+  <!-- Badges -->
+  <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
+    <a href="https://zonatan.my.id" target="_blank">
+      <img src="https://img.shields.io/badge/🌐_Live_Demo-FF0080?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo"/>
+    </a>
+    <a href="LICENSE" target="_blank">
+      <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License"/>
+    </a>
+    <a href="https://nextjs.org" target="_blank">
+      <img src="https://img.shields.io/badge/Next.js-14.2.3-000000?style=for-the-badge&logo=nextdotjs" alt="Next.js"/>
+    </a>
+  </div>
 </div>
 
 ## 🌟 About The Project
