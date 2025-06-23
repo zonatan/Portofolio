@@ -1,12 +1,8 @@
 <div align="center">
   <!-- Logo and Tech Stack -->
   <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px;">
-    <img src="app/favicon.ico" width="40" height="40" alt="Logo" style="border-radius: 8px;"/>
+    <img src="app/favicon.ico" width="100" height="100" alt="Logo" style="border-radius: 8px;"/>
     <div style="height: 40px; border-left: 2px solid #ddd; margin: 0 10px;"></div>
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="40" height="40" alt="Next.js"/>
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="40" height="40" alt="React"/>
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="40" height="40" alt="TypeScript"/>
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" width="40" height="40" alt="Tailwind CSS"/>
   </div>
 
   <!-- Title -->
