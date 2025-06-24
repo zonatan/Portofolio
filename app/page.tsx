@@ -3,6 +3,14 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Lanyard from "./components/Lanyard/Lanyard";
 import {
+  FaUserGraduate,
+  FaCode,
+  FaChartLine,
+  FaRobot,
+  FaLightbulb,
+  FaHeart,
+} from "react-icons/fa";
+import {
   FaHtml5,
   FaCss3Alt,
   FaJs,
@@ -31,18 +39,175 @@ import {
   useScroll,
   useTransform,
   AnimatePresence,
+  useAnimation,
 } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
+// AnimatedText Component
+const AnimatedText = ({
+  text,
+  className = "",
+}: {
+  text: string;
+  className?: string;
+}) => {
+  const words = text.split(" ");
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
+    }),
+  };
+
+  const child = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      style={{ overflow: "hidden", display: "flex", flexWrap: "wrap" }}
+      variants={container}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className={className}
+    >
+      {words.map((word, index) => (
+        <motion.span
+          variants={child}
+          style={{ marginRight: "5px" }}
+          key={index}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </motion.div>
+  );
+};
+
+// NavLink Component (replacing NavLinkMobile for all screens)
+const NavLink = ({
+  href,
+  active,
+  children,
+  label,
+}: {
+  href: string;
+  active: boolean;
+  children: React.ReactNode;
+  label: string;
+}) => {
+  return (
+    <a
+      href={href}
+      className={`relative p-2 rounded-full transition-colors duration-300 flex flex-col items-center ${
+        active
+          ? "text-blue-600 dark:text-blue-400"
+          : "text-gray-600 dark:text-gray-400"
+      }`}
+    >
+      <div
+        className={`p-2 rounded-full ${
+          active ? "bg-blue-100 dark:bg-blue-900/50" : ""
+        }`}
+      >
+        {children}
+      </div>
+      <span className={`text-xs mt-1 ${active ? "font-medium" : ""}`}>
+        {label}
+      </span>
+    </a>
+  );
+};
+
+// AnimatedFeatureCard Component
+const AnimatedFeatureCard = ({
+  icon,
+  title,
+  description,
+  color,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  color: string;
+}) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  const variants = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+    hidden: {
+      opacity: 0,
+      y: 50,
+    },
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={variants}
+      whileHover={{ y: -5 }}
+      className="flex items-start gap-4 p-4 rounded-xl bg-opacity-20 dark:bg-opacity-20 backdrop-blur-sm"
+      style={{
+        backgroundColor: `${color}20`,
+      }}
+    >
+      <div
+        className={`p-3 rounded-full ${color} bg-opacity-20 dark:bg-opacity-20`}
+      >
+        {icon}
+      </div>
+      <div>
+        <h4 className="font-semibold text-gray-900 dark:text-gray-200">
+          {title}
+        </h4>
+        <p className="text-gray-600 dark:text-gray-400 text-sm">
+          {description}
+        </p>
+      </div>
+    </motion.div>
+  );
+};
+
 export default function Home() {
-  // Dark mode state dengan nilai awal null untuk menghindari hydration mismatch
   const [darkMode, setDarkMode] = useState<boolean | null>(null);
 
-  // Inisialisasi darkMode dari localStorage di sisi klien, default ke true
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedMode = localStorage.getItem("darkMode");
-      const isDark = savedMode !== null ? savedMode === "true" : true; // Default ke true jika null
+      const isDark = savedMode !== null ? savedMode === "true" : true;
       setDarkMode(isDark);
       console.log(
         "Initial dark mode from localStorage:",
@@ -53,7 +218,6 @@ export default function Home() {
     }
   }, []);
 
-  // Efek untuk memperbarui kelas dark dan localStorage
   useEffect(() => {
     if (darkMode === null) return;
     console.log("Updating dark mode:", darkMode);
@@ -73,7 +237,6 @@ export default function Home() {
     }
   }, [darkMode]);
 
-  // Parallax effect setup
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -83,11 +246,10 @@ export default function Home() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  // Active section tracking
   const [activeSection, setActiveSection] = useState("home");
   const [homeRef, homeInView] = useInView({ threshold: 0.5 });
+  const [aboutRef, aboutInView] = useInView({ threshold: 0.3 });
   const [skillsRef, skillsInView] = useInView({ threshold: 0.3 });
-  // Menurunkan threshold untuk projects di mobile
   const [projectsRef, projectsInView] = useInView({
     threshold:
       typeof window !== "undefined" && window.innerWidth < 640 ? 0.1 : 0.3,
@@ -98,18 +260,21 @@ export default function Home() {
   useEffect(() => {
     console.log("Section in view:", {
       home: homeInView,
+      about: aboutInView,
       skills: skillsInView,
       projects: projectsInView,
       certificates: certificatesInView,
       contact: contactInView,
     });
     if (homeInView) setActiveSection("home");
+    else if (aboutInView) setActiveSection("about");
     else if (skillsInView) setActiveSection("skills");
     else if (projectsInView) setActiveSection("projects");
     else if (certificatesInView) setActiveSection("certificates");
     else if (contactInView) setActiveSection("contact");
   }, [
     homeInView,
+    aboutInView,
     skillsInView,
     projectsInView,
     certificatesInView,
@@ -119,55 +284,142 @@ export default function Home() {
   return (
     <div className="min-h-screen transition-colors duration-300">
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 transition-colors duration-500">
-        {/* Floating Navigation */}
-        <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] sm:w-auto">
-          <div className="flex items-center gap-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 flex-wrap justify-center">
-            <NavLink href="#home" active={activeSection === "home"}>
-              Home
+        <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-md">
+          <div className="flex items-center justify-between bg-white/90 dark:bg-gray-800/90 backdrop-blur-md px-4 py-3 rounded-full shadow-xl border border-gray-300/50 dark:border-gray-600/50">
+            <NavLink href="#home" active={activeSection === "home"} label="Home">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                />
+              </svg>
             </NavLink>
-            <NavLink href="#skills" active={activeSection === "skills"}>
-              Skills
+            <NavLink href="#about" active={activeSection === "about"} label="About">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
             </NavLink>
-            <NavLink href="#projects" active={activeSection === "projects"}>
-              Projects
+            <NavLink href="#skills" active={activeSection === "skills"} label="Skills">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                />
+              </svg>
+            </NavLink>
+            <NavLink href="#projects" active={activeSection === "projects"} label="Projects">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                />
+              </svg>
             </NavLink>
             <NavLink
               href="#certificates"
               active={activeSection === "certificates"}
+              label="Certificates"
             >
-              Certificates
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
             </NavLink>
-            <NavLink href="#contact" active={activeSection === "contact"}>
-              Contact
+            <NavLink href="#contact" active={activeSection === "contact"} label="Contact">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
             </NavLink>
             <button
               onClick={() => {
                 console.log("Toggling dark mode, current:", darkMode);
                 setDarkMode(!darkMode);
               }}
-              className="ml-2 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 transition-colors duration-300"
+              className={`p-2 rounded-full transition-colors duration-300 ${
+                activeSection === "theme"
+                  ? "bg-blue-100 dark:bg-blue-900/50"
+                  : "bg-transparent"
+              }`}
               aria-label="Toggle dark mode"
             >
               <AnimatePresence mode="wait" initial={false}>
                 {darkMode ? (
                   <motion.span
                     key="sun"
-                    initial={{ opacity: 0, rotate: -90 }}
-                    animate={{ opacity: 1, rotate: 0 }}
-                    exit={{ opacity: 0, rotate: 90 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
                     transition={{ duration: 0.2 }}
+                    className="text-yellow-400"
                   >
-                    <FaSun className="text-yellow-400" />
+                    <FaSun className="h-5 w-5" />
                   </motion.span>
                 ) : (
                   <motion.span
                     key="moon"
-                    initial={{ opacity: 0, rotate: 90 }}
-                    animate={{ opacity: 1, rotate: 0 }}
-                    exit={{ opacity: 0, rotate: -90 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
                     transition={{ duration: 0.2 }}
+                    className="text-indigo-500"
                   >
-                    <FaMoon className="text-indigo-500" />
+                    <FaMoon className="h-5 w-5" />
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -175,7 +427,6 @@ export default function Home() {
           </div>
         </nav>
 
-        {/* Hero Section with Lanyard */}
         <section
           id="home"
           ref={homeRef}
@@ -260,19 +511,185 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Lanyard Component - Right Side */}
-            <div className="hidden lg:flex lg:w-1/2 justify-center items-center h-full">
-              <div className="relative w-full h-[400px]">
+            <div className="hidden lg:flex lg:w-1/2 justify-center items-center h-screen ">
+              <div className="relative w-full h-full">
                 <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
               </div>
             </div>
           </div>
 
-          {/* Floating tech bubbles */}
           <TechBubbles />
         </section>
 
-        {/* Skills Section */}
+        <section
+          id="about"
+          ref={aboutRef}
+          className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden"
+        >
+          <motion.div
+            className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-blue-200 dark:bg-blue-900/30 blur-3xl opacity-40"
+            animate={{
+              x: [0, 20, 0],
+              y: [0, 30, 0],
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut",
+            }}
+          />
+          <motion.div
+            className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-purple-200 dark:bg-purple-900/30 blur-3xl opacity-40"
+            animate={{
+              x: [0, -20, 0],
+              y: [0, -30, 0],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut",
+            }}
+          />
+
+          <div className="container mx-auto px-6 relative z-10">
+            <SectionHeader
+              title="About Me"
+              subtitle="Get to know the person behind the code"
+            />
+
+            <div className="flex flex-col lg:flex-row gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="lg:w-1/3 flex justify-center relative"
+              >
+                <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-blue-500 dark:border-blue-400 shadow-xl">
+                  <Image
+                    src="/assets/profile.jpg"
+                    alt="Zonatan Sihombing"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+
+                <motion.div
+                  className="absolute -top-5 -left-5 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-700"
+                  animate={{
+                    y: [0, -10, 0],
+                    rotate: [0, 10, -10, 0],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
+                >
+                  <FaPython className="text-blue-500 text-xl" />
+                </motion.div>
+
+                <motion.div
+                  className="absolute -bottom-5 -right-5 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-700"
+                  animate={{
+                    y: [0, 10, 0],
+                    rotate: [0, -10, 10, 0],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    delay: 1,
+                  }}
+                >
+                  <SiLaravel className="text-red-600 text-xl" />
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="lg:w-2/3 space-y-6"
+              >
+                <AnimatedText
+                  text="Full Stack Developer & Data Enthusiast"
+                  className="text-2xl font-bold text-gray-900 dark:text-gray-200"
+                />
+
+                <motion.p
+                  className="text-gray-600 dark:text-gray-300"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  I'm an active Informatics Engineering student passionate about
+                  Web Development, Data Analysis, and Machine Learning. I
+                  specialize in creating modern, responsive websites while
+                  exploring how data and AI can drive meaningful solutions.
+                </motion.p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                  <AnimatedFeatureCard
+                    icon={<FaUserGraduate className="text-blue-500 text-xl" />}
+                    title="Education"
+                    description="Informatics Engineering Student at Manado State University"
+                    color="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400"
+                  />
+
+                  <AnimatedFeatureCard
+                    icon={<FaCode className="text-purple-500 text-xl" />}
+                    title="Web Development"
+                    description="Building functional, modern websites with clean code"
+                    color="bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400"
+                  />
+
+                  <AnimatedFeatureCard
+                    icon={<FaChartLine className="text-green-500 text-xl" />}
+                    title="Data Analysis"
+                    description="Extracting insights from data to drive decisions"
+                    color="bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400"
+                  />
+
+                  <AnimatedFeatureCard
+                    icon={<FaRobot className="text-orange-500 text-xl" />}
+                    title="Machine Learning"
+                    description="Exploring AI to automate processes and recognize patterns"
+                    color="bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400"
+                  />
+                </div>
+
+                <motion.div
+                  className="mt-6 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-800 border border-blue-100 dark:border-gray-700 relative overflow-hidden"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="absolute -top-3 -right-3 text-yellow-400 dark:text-yellow-300 opacity-20">
+                    <FaLightbulb className="text-6xl" />
+                  </div>
+                  <div className="flex items-center gap-3 relative z-10">
+                    <div className="text-pink-500 dark:text-pink-400">
+                      <FaHeart className="text-xl" />
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 text-sm">
+                      I believe technology should create positive social impact.
+                      That's why I'm passionate about projects that combine
+                      technical challenge with real-world value.
+                    </p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
         <section
           id="skills"
           ref={skillsRef}
@@ -315,7 +732,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Projects Section */}
         <section
           id="projects"
           ref={projectsRef}
@@ -335,7 +751,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Certificates Section */}
         <section
           id="certificates"
           ref={certificatesRef}
@@ -389,7 +804,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contact Section */}
         <section
           id="contact"
           ref={contactRef}
@@ -427,7 +841,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="py-8 bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
           <div className="container mx-auto px-6 text-center">
             <div className="flex justify-center gap-6 mb-4">
@@ -464,30 +877,6 @@ export default function Home() {
         </footer>
       </div>
     </div>
-  );
-}
-
-// Components
-function NavLink({
-  href,
-  active,
-  children,
-}: {
-  href: string;
-  active: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-        active
-          ? "bg-blue-600 text-white dark:bg-blue-500 dark:text-white"
-          : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
-      }`}
-    >
-      {children}
-    </a>
   );
 }
 
@@ -608,7 +997,7 @@ function ProjectCard({
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-lg transition-colors text-white"
           >
             <FaExternalLinkAlt />
-            <span>Live Demo</span>
+            <span>View</span>
           </a>
         </div>
       </div>
@@ -679,7 +1068,6 @@ function TechBubbles() {
   );
 }
 
-// Data
 const skills = [
   {
     name: "HTML",
@@ -772,31 +1160,40 @@ type ProjectType = {
 
 const projects: ProjectType[] = [
   {
-    id: 1,
+    id: 2,
     title: "Library Management System",
     description:
       "Comprehensive library management solution with online member registration, book inventory, and lending system. Features include real-time availability checks, automated reminders, and detailed reporting.",
-    technologies: ["PHP", "JavaScript", "Bootstrap", "MySQL"],
+    technologies: ["Web Development"],
     githubLink: "https://github.com/zonatan/Sistem-Perpustakaan",
     demoLink: "https://github.com/zonatan/Sistem-Perpustakaan",
   },
   {
-    id: 2,
-    title: "Motorbike Club Website",
+    id: 4,
+    title: "Church Mentoring Website",
     description:
-      "Modern static website for a motorcycle enthusiast club featuring responsive design, smooth animations, and clean UI. Showcases events, member galleries, and club information with an engaging user experience.",
-    technologies: ["HTML", "CSS", "JavaScript"],
-    githubLink: "https://github.com/zonatan/ClubMotor",
-    demoLink: "https://zonatan.github.io/ClubMotor/",
+      "This is the website of the GSJA church mentoring system in Indonesia, where on this website there are pages of church networks and workshops carried out by the church network throughout Indonesia which is divided into 5 regions.",
+    technologies: ["Website Development", "UI/UX Design"],
+    githubLink: "https://github.com/bryanwalujan/website_gereja",
+    demoLink: "https://kingdomexpansion.id/",
   },
   {
     id: 3,
     title: "Company Portfolio",
     description:
       "Professional business portfolio website with modern design aesthetics. Features services showcase, team profiles, client testimonials, and contact forms. Built with performance and SEO best practices in mind.",
-    technologies: ["HTML", "CSS", "Tailwind CSS", "JavaScript"],
+    technologies: ["UI/UX Design"],
     githubLink: "https://github.com/zonatan/company-portfolio",
     demoLink: "https://zonatan.github.io/company-portfolio/",
+  },
+  {
+    id: 1,
+    title: "Motorbike Club Website",
+    description:
+      "Modern static website for a motorcycle enthusiast club featuring responsive design, smooth animations, and clean UI. Showcases events, member galleries, and club information with an engaging user experience.",
+    technologies: ["UI/UX Design"],
+    githubLink: "https://github.com/zonatan/ClubMotor",
+    demoLink: "https://zonatan.github.io/ClubMotor/",
   },
 ];
 
