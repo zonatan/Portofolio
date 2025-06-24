@@ -285,8 +285,12 @@ export default function Home() {
     <div className="min-h-screen transition-colors duration-300">
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 transition-colors duration-500">
         <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-md">
-          <div className="flex items-center justify-between bg-white/90 dark:bg-gray-800/90 backdrop-blur-md px-4 py-3 rounded-full shadow-xl border border-gray-300/50 dark:border-gray-600/50">
-            <NavLink href="#home" active={activeSection === "home"} label="Home">
+          <div className="flex items-center justify-between bg-white/90 dark:bg-gray-800/90 backdrop-blur-md px-2 py-1 rounded-full shadow-xl border border-gray-300/50 dark:border-gray-600/50">
+            <NavLink
+              href="#home"
+              active={activeSection === "home"}
+              label="Home"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -302,7 +306,11 @@ export default function Home() {
                 />
               </svg>
             </NavLink>
-            <NavLink href="#about" active={activeSection === "about"} label="About">
+            <NavLink
+              href="#about"
+              active={activeSection === "about"}
+              label="About"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -318,7 +326,11 @@ export default function Home() {
                 />
               </svg>
             </NavLink>
-            <NavLink href="#skills" active={activeSection === "skills"} label="Skills">
+            <NavLink
+              href="#skills"
+              active={activeSection === "skills"}
+              label="Skills"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -334,7 +346,11 @@ export default function Home() {
                 />
               </svg>
             </NavLink>
-            <NavLink href="#projects" active={activeSection === "projects"} label="Projects">
+            <NavLink
+              href="#projects"
+              active={activeSection === "projects"}
+              label="Projects"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -366,26 +382,11 @@ export default function Home() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  d="M9 12l2 2l4-4M12 2a10 10 0 100 20 10 10 0 000-20z"
                 />
               </svg>
             </NavLink>
-            <NavLink href="#contact" active={activeSection === "contact"} label="Contact">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-            </NavLink>
+
             <button
               onClick={() => {
                 console.log("Toggling dark mode, current:", darkMode);
