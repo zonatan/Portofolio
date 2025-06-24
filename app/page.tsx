@@ -409,7 +409,7 @@ export default function Home() {
                     transition={{ duration: 0.2 }}
                     className="text-yellow-400"
                   >
-                    <FaSun className="h-5 w-5" />
+                    <FaMoon className="h-5 w-5" />
                   </motion.span>
                 ) : (
                   <motion.span
@@ -420,7 +420,7 @@ export default function Home() {
                     transition={{ duration: 0.2 }}
                     className="text-indigo-500"
                   >
-                    <FaMoon className="h-5 w-5" />
+                    <FaSun className="h-5 w-5" />
                   </motion.span>
                 )}
               </AnimatePresence>
