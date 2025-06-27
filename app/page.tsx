@@ -1179,6 +1179,15 @@ const projects: ProjectType[] = [
     demoLink: "https://kingdomexpansion.id/",
   },
   {
+    id: 5,
+    title: "AI Major Recommendation System",
+    description:
+      "An AI-based college major recommendation system that helps students determine the optimal choice of major based on personality, interests, and abilities using the Decision Tree algorithm.",
+    technologies: ["Website Development", "Machine Learning"],
+    githubLink: "https://github.com/zonatan/Rekomendasi-Jurusan",
+    demoLink: "https://github.com/zonatan/Rekomendasi-Jurusan",
+  },
+  {
     id: 3,
     title: "Company Portfolio",
     description:
