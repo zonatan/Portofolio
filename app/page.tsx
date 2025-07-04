@@ -104,7 +104,7 @@ const AnimatedText = ({
   );
 };
 
-// NavLink Component (replacing NavLinkMobile for all screens)
+// NavLink Component
 const NavLink = ({
   href,
   active,
@@ -203,37 +203,23 @@ const AnimatedFeatureCard = ({
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState<boolean | null>(null);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedMode = localStorage.getItem("darkMode");
       const isDark = savedMode !== null ? savedMode === "true" : true;
       setDarkMode(isDark);
-      console.log(
-        "Initial dark mode from localStorage:",
-        savedMode,
-        "isDark:",
-        isDark
-      );
     }
   }, []);
 
   useEffect(() => {
     if (darkMode === null) return;
-    console.log("Updating dark mode:", darkMode);
     localStorage.setItem("darkMode", darkMode.toString());
     if (darkMode) {
       document.documentElement.classList.add("dark");
-      console.log(
-        "Added dark class:",
-        document.documentElement.classList.contains("dark")
-      );
     } else {
       document.documentElement.classList.remove("dark");
-      console.log(
-        "Removed dark class:",
-        !document.documentElement.classList.contains("dark")
-      );
     }
   }, [darkMode]);
 
@@ -258,14 +244,6 @@ export default function Home() {
   const [contactRef, contactInView] = useInView({ threshold: 0.5 });
 
   useEffect(() => {
-    console.log("Section in view:", {
-      home: homeInView,
-      about: aboutInView,
-      skills: skillsInView,
-      projects: projectsInView,
-      certificates: certificatesInView,
-      contact: contactInView,
-    });
     if (homeInView) setActiveSection("home");
     else if (aboutInView) setActiveSection("about");
     else if (skillsInView) setActiveSection("skills");
@@ -388,10 +366,7 @@ export default function Home() {
             </NavLink>
 
             <button
-              onClick={() => {
-                console.log("Toggling dark mode, current:", darkMode);
-                setDarkMode(!darkMode);
-              }}
+              onClick={() => setDarkMode(!darkMode)}
               className={`p-2 rounded-full transition-colors duration-300 ${
                 activeSection === "theme"
                   ? "bg-blue-100 dark:bg-blue-900/50"
@@ -745,10 +720,25 @@ export default function Home() {
             />
 
             <div className="space-y-16 mt-12">
-              {projects.map((project, index) => (
+              {(showAllProjects ? projects : projects.slice(0, 4)).map((project, index) => (
                 <ProjectCard key={project.id} project={project} index={index} />
               ))}
             </div>
+
+            <motion.div
+              className="mt-12 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <button
+                onClick={() => setShowAllProjects(!showAllProjects)}
+                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-lg font-medium transition-colors shadow-lg"
+              >
+                {showAllProjects ? "Show less" : "Show More Projects"}
+              </button>
+            </motion.div>
           </div>
         </section>
 
@@ -1160,6 +1150,15 @@ type ProjectType = {
 };
 
 const projects: ProjectType[] = [
+  {
+    id: 6,
+    title: "Learning Management and Attendance System Using QR Code",
+    description:
+      "QR Code-Based LMS and Attendance System is a web-based application developed to enhance the efficiency of classroom management and student monitoring. The system integrates a Learning Management System (LMS) with a QR code-based attendance feature, allowing students to mark their presence by scanning a unique QR code during class sessions.Once a student successfully checks in, the system automatically sends an email notification to the student's parent or guardian, informing them of the attendance. This feature improves transparency and strengthens communication between the school and parents.Teachers can also manage class schedules, share learning materials, and monitor student progress within a single platform. With real-time attendance tracking and automated email alerts, this system offers a smart and reliable solution for modern educational environments.",
+    technologies: ["Web Development","UI/UX Design"],
+    githubLink: "https://github.com/bryanwalujan/Smk2_fix",
+    demoLink: "https://github.com/bryanwalujan/Smk2_fix",
+  },
   {
     id: 2,
     title: "Library Management System",
