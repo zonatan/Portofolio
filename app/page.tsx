@@ -1154,7 +1154,7 @@ const projects: ProjectType[] = [
     id: 6,
     title: "Learning Management and Attendance System Using QR Code",
     description:
-      "QR Code-Based LMS and Attendance System is a web-based application developed to enhance the efficiency of classroom management and student monitoring. The system integrates a Learning Management System (LMS) with a QR code-based attendance feature, allowing students to mark their presence by scanning a unique QR code during class sessions.Once a student successfully checks in, the system automatically sends an email notification to the student's parent or guardian, informing them of the attendance. This feature improves transparency and strengthens communication between the school and parents.Teachers can also manage class schedules, share learning materials, and monitor student progress within a single platform. With real-time attendance tracking and automated email alerts, this system offers a smart and reliable solution for modern educational environments.",
+      "QR Code-Based LMS and Attendance System is a web app that combines learning management with QR code attendance. Students scan a unique QR code to check in, triggering an automatic email notification to parents. Teachers can manage schedules, share materials, and track progress—all in one platform. This system enhances transparency and streamlines classroom management with real-time monitoring and smart notifications.",
     technologies: ["Web Development","UI/UX Design"],
     githubLink: "https://github.com/bryanwalujan/Smk2_fix",
     demoLink: "https://github.com/bryanwalujan/Smk2_fix",
