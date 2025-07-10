@@ -224,7 +224,7 @@ function OrganizationCard({
           src={`/assets/organizations/org${organization.id}.jpg`}
           alt={organization.name}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500 "
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
@@ -544,7 +544,7 @@ export default function Home() {
                 <h1 className="text-5xl pb-2 pt-2 md:text-6xl font-bold mt-2 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
                   Zonatan Sihombing
                 </h1>
-                <p className="text-lg text-gray-300 dark:text-gray-200 mt-4 leading-relaxed">
+                <p className="text-lg text-gray-600 dark:text-gray-200 mt-4 leading-relaxed">
                   I craft exceptional digital experiences with clean, efficient
                   code and intuitive interfaces that users love.
                 </p>
@@ -1352,28 +1352,28 @@ type OrganizationType = {
 const organizations: OrganizationType[] = [
   {
     id: 1,
-    name: "Ikatan Kerukunan Mahasiswa Batak Indonesia",
-   role: "Permanent Session Chairperson",
-period: "May – June 2025",
-description: "Led the formal proceedings of the congress by ensuring order, neutrality, and adherence to the rules of the Grand Deliberation. Contributed to formulating resolutions and policy recommendations to support the collective sustainability of the association.",
+    name: "Himpunan Mahasiswa Informatika",
+    role: "Ketua Divisi Teknologi",
+    period: "2023 - 2024",
+    description:
+      "Memimpin pengembangan aplikasi internal untuk organisasi, mengkoordinasikan tim teknologi, dan menyelenggarakan workshop pemrograman untuk anggota.",
   },
   {
     id: 2,
-    name: "Ikatan Kerukunan Mahasiswa Batak Indonesia",
-    role: "Coordinator Member of Equipment Division",
-period: "2023 – 2024",
-description:
-  "Responsible for planning, procurement, and arrangement of equipment for the organization's Christmas event. Actively collaborated with other divisions to ensure the event was executed on time and according to plan.",
+    name: "Komunitas Open Source Manado",
+    role: "Kontributor",
+    period: "2022 - 2023",
+    description:
+      "Berkontribusi pada proyek open-source lokal, termasuk pengembangan website komunitas dan mentoring untuk pengembang pemula.",
   },
   {
     id: 3,
-    name: "UNIMA informatics coding community",
-    role: "Contributor",
-    period: "2023 - Present",
+    name: "Badan Eksekutif Mahasiswa",
+    role: "Anggota Divisi Media",
+    period: "2021 - 2022",
     description:
-      "Contributed to campus open-source projects, including community website development and mentoring for beginner developers.",
+      "Mengelola media sosial organisasi, mendesain materi promosi, dan mendukung pengembangan platform digital untuk kegiatan mahasiswa.",
   },
- 
 ];
 
 const certificates = [
