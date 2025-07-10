@@ -24,6 +24,7 @@ import {
   FaEnvelope,
   FaMoon,
   FaSun,
+  FaDownload,
 } from "react-icons/fa";
 import {
   SiNextdotjs,
@@ -262,6 +263,46 @@ export default function Home() {
   return (
     <div className="min-h-screen transition-colors duration-300">
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 transition-colors duration-500">
+        {/* Download CV Button */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="fixed top-4 right-4 z-50"
+        >
+          <div className="relative group">
+            <motion.a
+              href="/assets/cv.pdf"
+              download="Zonatan_Sihombing_CV.pdf"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.2)",
+                background: "linear-gradient(to right, #2563eb, #7c3aed)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-4 py-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md text-gray-800 dark:text-gray-200 rounded-full font-medium transition-all duration-300 shadow-lg border border-gray-300/50 dark:border-gray-600/50 hover:border-blue-400/50 hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white"
+              aria-label="Download my CV"
+            >
+              <motion.span
+                animate={{ y: [0, -2, 0], rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <FaDownload className="text-lg" />
+              </motion.span>
+              <span className="text-sm">CV</span>
+            </motion.a>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileHover={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-medium px-3 py-1 rounded-lg shadow-md hidden group-hover:block"
+            >
+              Download Resume
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-2 h-2 bg-blue-600"></div>
+            </motion.div>
+          </div>
+        </motion.div>
+
         <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-md">
           <div className="flex items-center justify-between bg-white/90 dark:bg-gray-800/90 backdrop-blur-md px-2 py-1 rounded-full shadow-xl border border-gray-300/50 dark:border-gray-600/50">
             <NavLink
@@ -487,7 +528,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            <div className="hidden lg:flex lg:w-1/2 justify-center items-center h-screen ">
+            <div className="hidden lg:flex lg:w-1/2 justify-center items-center h-screen">
               <div className="relative w-full h-full">
                 <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
               </div>
@@ -1075,31 +1116,31 @@ const skills = [
   {
     name: "JavaScript",
     icon: <FaJs className="text-yellow-500" />,
-    level: 88,
+    level: 80,
     levelColor: "bg-yellow-500",
   },
   {
     name: "TypeScript",
     icon: <SiTypescript className="text-blue-600" />,
-    level: 80,
+    level: 70,
     levelColor: "bg-blue-600",
   },
   {
     name: "React",
     icon: <FaReact className="text-blue-400" />,
-    level: 85,
+    level: 70,
     levelColor: "bg-blue-400",
   },
   {
     name: "Next.js",
     icon: <SiNextdotjs className="text-black dark:text-white" />,
-    level: 75,
+    level: 70,
     levelColor: "bg-gray-800 dark:bg-gray-300",
   },
   {
     name: "Node.js",
     icon: <FaNodeJs className="text-green-500" />,
-    level: 78,
+    level: 70,
     levelColor: "bg-green-500",
   },
   {
@@ -1111,13 +1152,13 @@ const skills = [
   {
     name: "MongoDB",
     icon: <SiMongodb className="text-green-400" />,
-    level: 75,
+    level: 65,
     levelColor: "bg-green-400",
   },
   {
     name: "PostgreSQL",
     icon: <SiPostgresql className="text-blue-500" />,
-    level: 72,
+    level: 65,
     levelColor: "bg-blue-500",
   },
   {
@@ -1129,7 +1170,7 @@ const skills = [
   {
     name: "Laravel",
     icon: <SiLaravel className="text-red-600" />,
-    level: 65,
+    level: 85,
     levelColor: "bg-red-600",
   },
   {
@@ -1155,25 +1196,17 @@ const projects: ProjectType[] = [
     title: "Learning Management and Attendance System Using QR Code",
     description:
       "QR Code-Based LMS and Attendance System is a web app that combines learning management with QR code attendance. Students scan a unique QR code to check in, triggering an automatic email notification to parents. Teachers can manage schedules, share materials, and track progress—all in one platform. This system enhances transparency and streamlines classroom management with real-time monitoring and smart notifications.",
-    technologies: ["Web Development","UI/UX Design"],
+    technologies: ["Laravel","Web Development", "UI/UX Design"],
     githubLink: "https://github.com/bryanwalujan/Smk2_fix",
     demoLink: "https://github.com/bryanwalujan/Smk2_fix",
   },
-  {
-    id: 2,
-    title: "Library Management System",
-    description:
-      "Comprehensive library management solution with online member registration, book inventory, and lending system. Features include real-time availability checks, automated reminders, and detailed reporting.",
-    technologies: ["Web Development"],
-    githubLink: "https://github.com/zonatan/Sistem-Perpustakaan",
-    demoLink: "https://github.com/zonatan/Sistem-Perpustakaan",
-  },
+  
   {
     id: 4,
     title: "Church Mentoring Website",
     description:
       "This is the website of the GSJA church mentoring system in Indonesia, where on this website there are pages of church networks and workshops carried out by the church network throughout Indonesia which is divided into 5 regions.",
-    technologies: ["Website Development", "UI/UX Design"],
+    technologies: ["Laravel","Tailwind","Website Development", "UI/UX Design"],
     githubLink: "https://github.com/bryanwalujan/website_gereja",
     demoLink: "https://kingdomexpansion.id/",
   },
@@ -1182,16 +1215,25 @@ const projects: ProjectType[] = [
     title: "AI Major Recommendation System",
     description:
       "An AI-based college major recommendation system that helps students determine the optimal choice of major based on personality, interests, and abilities using the Decision Tree algorithm.",
-    technologies: ["Website Development", "Machine Learning"],
+    technologies: ["Flask","Website Development", "Machine Learning"],
     githubLink: "https://github.com/zonatan/Rekomendasi-Jurusan",
     demoLink: "https://github.com/zonatan/Rekomendasi-Jurusan",
+  },
+  {
+    id: 2,
+    title: "Library Management System",
+    description:
+      "Comprehensive library management solution with online member registration, book inventory, and lending system. Features include real-time availability checks, automated reminders, and detailed reporting.",
+    technologies: ["PHP","Bootsrap","Web Development"],
+    githubLink: "https://github.com/zonatan/Sistem-Perpustakaan",
+    demoLink: "https://github.com/zonatan/Sistem-Perpustakaan",
   },
   {
     id: 3,
     title: "Company Portfolio",
     description:
       "Professional business portfolio website with modern design aesthetics. Features services showcase, team profiles, client testimonials, and contact forms. Built with performance and SEO best practices in mind.",
-    technologies: ["UI/UX Design"],
+    technologies: ["Tailwind","UI/UX Design"],
     githubLink: "https://github.com/zonatan/company-portfolio",
     demoLink: "https://zonatan.github.io/company-portfolio/",
   },
@@ -1200,7 +1242,7 @@ const projects: ProjectType[] = [
     title: "Motorbike Club Website",
     description:
       "Modern static website for a motorcycle enthusiast club featuring responsive design, smooth animations, and clean UI. Showcases events, member galleries, and club information with an engaging user experience.",
-    technologies: ["UI/UX Design"],
+    technologies: ["HTML","CSS","UI/UX Design"],
     githubLink: "https://github.com/zonatan/ClubMotor",
     demoLink: "https://zonatan.github.io/ClubMotor/",
   },
@@ -1210,22 +1252,36 @@ const certificates = [
   {
     id: "1",
     title: "Basic Data",
-    issuer: "Coding Bootcamp",
-    date: "2023",
-    link: "#",
+    issuer: "MySkill",
+    date: "2025",
+    link: "https://storage.googleapis.com/myskill-v2-certificates/topic-PDDPBK4W7Z3skoQ70VQH/bmfpKRMnGTbCvKUksoDgErdel9m1-YRAGQ6GNQM7cCs8SFKw0.pdf",
   },
   {
     id: "2",
     title: "API Introduction",
-    issuer: "Online Course Platform",
-    date: "2022",
-    link: "#",
+    issuer: "MySkill",
+    date: "2025",
+    link: "https://storage.googleapis.com/myskill-v2-certificates/course-SwFiuww5ziXxhrNM5eOh/bmfpKRMnGTbCvKUksoDgErdel9m1-0Yw3sg6j8mLqcND2cpcx.pdf",
   },
   {
     id: "3",
     title: "Website Development Fundamental",
-    issuer: "Web Development Institute",
-    date: "2021",
-    link: "#",
+    issuer: "MySkill",
+    date: "2025",
+    link: "https://storage.googleapis.com/myskill-v2-certificates/topic-IXppB88r5Rj19e8Pm65p/bmfpKRMnGTbCvKUksoDgErdel9m1-zyJ1IMlhP4ffZn75vOWT.pdf",
+  },
+  {
+    id: "4",
+    title: "Junior Web Developer",
+    issuer: "Digital Talent Scholarship",
+    date: "2024",
+    link: "https://drive.google.com/file/d/1a_xbMQFZRDGNsJoDmUvoL9vh60YOMdNL/view?usp=drive_link",
+  },
+  {
+    id: "5",
+    title: "Junior Network Administrator",
+    issuer: "Digital Talent Scholarship",
+    date: "2024",
+    link: "https://drive.google.com/file/d/1Vrs_RCG-5y1SNW52MzdMwqqjbWzbL_LX/view?usp=drive_link",
   },
 ];
