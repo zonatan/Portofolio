@@ -1283,31 +1283,13 @@ const projects: ProjectType[] = [
     demoLink: "https://github.com/bryanwalujan/Smk2_fix",
   },
   {
-    id: 4,
-    title: "Church Mentoring Website",
+    id: 7,
+    title: "Movie Search",
     description:
-      "This is the website of the GSJA church mentoring system in Indonesia, where on this website there are pages of church networks and workshops carried out by the church network throughout Indonesia which is divided into 5 regions.",
-    technologies: ["Laravel", "Tailwind", "Website Development", "UI/UX Design"],
-    githubLink: "https://github.com/bryanwalujan/website_gereja",
-    demoLink: "https://kingdomexpansion.id/",
-  },
-  {
-    id: 5,
-    title: "AI Major Recommendation System",
-    description:
-      "An AI-based college major recommendation system that helps students determine the optimal choice of major based on personality, interests, and abilities using the Decision Tree algorithm.",
-    technologies: ["Flask", "Website Development", "Machine Learning"],
-    githubLink: "https://github.com/zonatan/Rekomendasi-Jurusan",
-    demoLink: "https://github.com/zonatan/Rekomendasi-Jurusan",
-  },
-  {
-    id: 2,
-    title: "Library Management System",
-    description:
-      "Comprehensive library management solution with online member registration, book inventory, and lending system. Features include real-time availability checks, automated reminders, and detailed reporting.",
-    technologies: ["PHP", "Bootstrap", "Web Development"],
-    githubLink: "https://github.com/zonatan/Sistem-Perpustakaan",
-    demoLink: "https://github.com/zonatan/Sistem-Perpustakaan",
+      "An advanced movie search application built with React.js, integrating the OMDb API. Features include dynamic search, pagination, filtering by type (movie/series), a modal for movie details, and search history stored using localStorage. Developed with Tailwind CSS for a responsive and modern UI, showcasing skills in state management, API integration, and front-end development.",
+    technologies: ["React","Tailwind", "Website Development", "UI/UX Design"],
+    githubLink: "https://github.com/zonatan/cineflix",
+    demoLink: "https://github.com/zonatan/cineflix",
   },
   {
     id: 3,
@@ -1318,6 +1300,35 @@ const projects: ProjectType[] = [
     githubLink: "https://github.com/zonatan/company-portfolio",
     demoLink: "https://zonatan.github.io/company-portfolio/",
   },
+  {
+    id: 5,
+    title: "AI Major Recommendation System",
+    description:
+      "An AI-based college major recommendation system that helps students determine the optimal choice of major based on personality, interests, and abilities using the Decision Tree algorithm.",
+    technologies: ["Flask", "Website Development", "Machine Learning"],
+    githubLink: "https://github.com/zonatan/Rekomendasi-Jurusan",
+    demoLink: "https://github.com/zonatan/Rekomendasi-Jurusan",
+  },
+  
+  {
+    id: 2,
+    title: "Library Management System",
+    description:
+      "Comprehensive library management solution with online member registration, book inventory, and lending system. Features include real-time availability checks, automated reminders, and detailed reporting.",
+    technologies: ["PHP", "Bootstrap", "Web Development"],
+    githubLink: "https://github.com/zonatan/Sistem-Perpustakaan",
+    demoLink: "https://github.com/zonatan/Sistem-Perpustakaan",
+  },
+  {
+    id: 4,
+    title: "Church Mentoring Website",
+    description:
+      "This is the website of the GSJA church mentoring system in Indonesia, where on this website there are pages of church networks and workshops carried out by the church network throughout Indonesia which is divided into 5 regions.",
+    technologies: ["Laravel", "Tailwind", "Website Development", "UI/UX Design"],
+    githubLink: "https://github.com/bryanwalujan/website_gereja",
+    demoLink: "https://kingdomexpansion.id/",
+  },
+  
   {
     id: 1,
     title: "Motorbike Club Website",
