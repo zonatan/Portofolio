@@ -1328,6 +1328,15 @@ const projects: ProjectType[] = [
     githubLink: "https://github.com/bryanwalujan/website_gereja",
     demoLink: "https://kingdomexpansion.id/",
   },
+  {
+    id: 8,
+    title: "Lecturer Repository",
+    description:
+      "This project is a web-based academic repository built with Laravel, designed for the Informatics Department at Universitas Negeri Manado (UNIMA). It features a secure CAPTCHA system to prevent spam, and an advanced filtering function to categorize research works by type (e.g., research, community service, intellectual property). The system also includes a searchable list of lecturers, detailed publication records, and a responsive interface to support easy access to academic contributions.",
+    technologies: ["Laravel", "Tailwind", "Website Development", "UI/UX Design"],
+    githubLink: "https://github.com/bryanwalujan/repo_unima",
+    demoLink: "https://repodosen.ti.unima.ac.id/",
+  },
   
   {
     id: 1,
