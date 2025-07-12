@@ -1289,7 +1289,7 @@ const projects: ProjectType[] = [
       "An advanced movie search application built with React.js, integrating the OMDb API. Features include dynamic search, pagination, filtering by type (movie/series), a modal for movie details, and search history stored using localStorage. Developed with Tailwind CSS for a responsive and modern UI, showcasing skills in state management, API integration, and front-end development.",
     technologies: ["React","Tailwind", "Website Development", "UI/UX Design"],
     githubLink: "https://github.com/zonatan/cineflix",
-    demoLink: "https://github.com/zonatan/cineflix",
+    demoLink: "https://zocineflix.netlify.app/",
   },
   {
     id: 3,
