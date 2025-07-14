@@ -1340,10 +1340,10 @@ const projects: ProjectType[] = [
   
   {
     id: 1,
-    title: "Motorbike Club Website",
-    description:
-      "Modern static website for a motorcycle enthusiast club featuring responsive design, smooth animations, and clean UI. Showcases events, member galleries, and club information with an engaging user experience.",
-    technologies: ["HTML", "CSS", "UI/UX Design"],
+    title: "Automotive Club Website",
+description:
+  "Modern static website for an automotive enthusiast club featuring responsive design, smooth animations, and a clean UI. Showcases events, member galleries, and club information for both motorcycle and car enthusiasts, providing an engaging and inclusive user experience.",
+    technologies: ["Tailwind", "UI/UX Design"],
     githubLink: "https://github.com/zonatan/ClubMotor",
     demoLink: "https://zonatan.github.io/ClubMotor/",
   },
